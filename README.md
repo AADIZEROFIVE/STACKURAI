@@ -1,4 +1,4 @@
-# SATCKURAI
+# STACKURAI
 ### 🚀 Bridging Educational Gaps in Minority Communities: Innovative and Culturally Sensitive Solutions
 # 🎓 Bridging Educational Gaps in Minority Communities 🌍  
 
