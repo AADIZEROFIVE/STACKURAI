@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="webcrumbs"> 
+    <div class="w-[400px] bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200">
+<div class="bg-gradient-to-r from-indigo-500 to-blue-500 px-6 py-6 text-white">
+<h1 class="text-2xl font-bold">Community Assistant</h1>
+<p class="text-sm mt-1 opacity-80">Essential tools for everyday needs</p>
+</div>
+
+<div class="p-4">
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="bg-blue-50 p-4 rounded-xl hover:bg-blue-100 transform hover:scale-105 transition-all duration-300 cursor-pointer border border-blue-200">
+    <span class="material-symbols-outlined text-3xl text-blue-500">public</span>
+    <p class="font-medium mt-2">News</p>
+    <p class="text-xs mt-1">Daily updates</p>
+</div>
+<div class="bg-green-50 p-4 rounded-xl hover:bg-green-100 transform hover:scale-105 transition-all duration-300 cursor-pointer border border-green-200">
+    <span class="material-symbols-outlined text-3xl text-green-500">school</span>
+    <p class="font-medium mt-2">Knowledge</p>
+    <p class="text-xs mt-1">Learn something new</p>
+</div>
+<div class="bg-amber-50 p-4 rounded-xl hover:bg-amber-100 transform hover:scale-105 transition-all duration-300 cursor-pointer border border-amber-200">
+    <span class="material-symbols-outlined text-3xl text-amber-500">account_balance</span>
+    <p class="font-medium mt-2">Banking</p>
+    <p class="text-xs mt-1">Financial services</p>
+</div>
+<div class="bg-purple-50 p-4 rounded-xl hover:bg-purple-100 transform hover:scale-105 transition-all duration-300 cursor-pointer border border-purple-200">
+    <span class="material-symbols-outlined text-3xl text-purple-500">gavel</span>
+    <p class="font-medium mt-2">Government</p>
+    <p class="text-xs mt-1">Public services</p>
+</div>
+</div>
+
+<details class="mb-3 open:mb-4 group transition-all duration-300">
+<summary class="cursor-pointer list-none flex items-center justify-between bg-gray-50 p-3 rounded-lg hover:bg-gray-100 transition-all">
+    <div class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-gray-600">lightbulb</span>
+    <span class="font-medium">General Knowledge</span>
+    </div>
+    <span class="material-symbols-outlined text-gray-500 group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="p-3 mt-2 bg-gray-50 rounded-lg text-sm">
+    <ul class="space-y-2">
+    <li class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-blue-500 text-sm">check_circle</span>
+        Read diverse sources to expand your knowledge
+    </li>
+    <li class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-blue-500 text-sm">check_circle</span>
+        Practice critical thinking with complex topics
+    </li>
+    <li class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-blue-500 text-sm">check_circle</span>
+        Engage in discussions to refine understanding
+    </li>
+    </ul>
+</div>
+</details>
+
+<details class="mb-3 open:mb-4 group transition-all duration-300">
+<summary class="cursor-pointer list-none flex items-center justify-between bg-gray-50 p-3 rounded-lg hover:bg-gray-100 transition-all">
+    <div class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-gray-600">account_balance</span>
+    <span class="font-medium">Government & Banking</span>
+    </div>
+    <span class="material-symbols-outlined text-gray-500 group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="p-3 mt-2 bg-gray-50 rounded-lg text-sm">
+    <div class="flex items-center gap-2 mb-2">
+    <span class="material-symbols-outlined text-green-500">payments</span>
+    <p>Banking hours: <span class="font-bold">9AM-5PM</span></p>
+    </div>
+    <div class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-amber-500">badge</span>
+    <p>Govt. helpline: <span class="font-bold">1800-100-200</span></p>
+    </div>
+</div>
+</details>
+
+<div class="mt-6 bg-blue-50 rounded-xl p-4 border border-blue-200">
+<h2 class="font-bold mb-3 flex items-center gap-1">
+    <span class="material-symbols-outlined">campaign</span>
+    Important Announcement
+</h2>
+<p class="text-sm">New citizen services portal launching next week. Access government services online from home.</p>
+<button class="mt-3 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300 flex items-center justify-center gap-2 transform hover:scale-[1.02] active:scale-[0.98]">
+    <span class="material-symbols-outlined text-sm">info</span>
+    More Information
+</button>
+</div>
+</div>
+
+<footer class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+<div class="flex justify-between items-center">
+<button class="flex items-center gap-1 hover:bg-gray-100 p-2 rounded-lg transition-colors">
+    <span class="material-symbols-outlined">help</span>
+    <span class="text-sm">Help</span>
+</button>
+<button class="flex items-center gap-1 hover:bg-gray-100 p-2 rounded-lg transition-colors">
+    <span class="material-symbols-outlined">settings</span>
+    <span class="text-sm">Settings</span>
+</button>
+<button class="flex items-center gap-1 hover:bg-gray-100 p-2 rounded-lg transition-colors">
+    <span class="material-symbols-outlined">language</span>
+    <span class="text-sm">Language</span>
+</button>
+</div>
+</footer>
+</div> 
+</div>
+{% endblock %}
+
+    
