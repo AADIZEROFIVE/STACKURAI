@@ -13,5 +13,9 @@ Our mission is to develop **innovative, culturally sensitive, and impactful** so
 ✅ Ensure initiatives **achieve real results** ✅  
 
 🔍 **Together, we can build equitable learning opportunities and empower communities for long-term success!**  
+![Community Impact](https://img.shields.io/badge/Impact-Education-blue)
+![Diversity & Inclusion](https://img.shields.io/badge/Diversity-&%20Inclusion-green)
+![Innovation](https://img.shields.io/badge/Innovation-Solutions-orange)
+
 
 
