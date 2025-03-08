@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constitution Buddy - Legal Assistant</title>
+    <link rel="stylesheet" href="{% static 'chatbot/css/const_style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Constitution Buddy</h1>
+            <p>Your Legal Assistant for Indian Constitutional Knowledge</p>
+        </header>
+
+        <main>
+            <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message bot">
+                        <div class="avatar">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="content">
+                            <p>Hello! I'm Constitution Buddy, your legal assistant. I can help you understand your rights, navigate legal processes, and provide guidance on constitutional matters in India.</p>
+                            <p>How can I assist you today?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input">
+                    <form id="chat-form">
+                        <input type="text" id="user-input" placeholder="Type your question here..." autocomplete="off">
+                        <button type="submit" id="send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="suggestions">
+                <h3>Example Questions:</h3>
+                <div class="suggestion-chips">
+                    <button class="chip" data-question="How do I file an FIR if the police refuse?">How do I file an FIR if the police refuse?</button>
+                    <button class="chip" data-question="What are my rights if I get arrested?">What are my rights if arrested?</button>
+                    <button class="chip" data-question="How do I get a caste certificate?">How to get a caste certificate?</button>
+                    <button class="chip" data-question="What is the process for divorce?">Process for divorce?</button>
+                    <button class="chip" data-question="What are my rights if someone grabs my land illegally?">Land grabbing rights?</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>This assistant provides general legal information and not legal advice. For specific legal issues, please consult a qualified lawyer.</p>
+        </footer>
+    </div>
+
+    <script src="{% static 'chatbot/js/const_script.js' %}"></script>
+</body>
+</html>
