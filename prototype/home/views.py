@@ -6,6 +6,7 @@ import os
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
+from django.contrib.auth.decorators import login_required
 
 # Load environment variables
 load_dotenv("../.env")
@@ -42,13 +43,14 @@ prompt_template = ChatPromptTemplate.from_messages([
     ("human", "{user_input}")
 ])
 
-def chatbot_view(request):
+@login_required(login_url='/authentication/login/')
+def constitution_chatbot_view(request):
     """
     Render the main chatbot interface
     """
     return render(request, 'chatbot/const_index.html')
 
-def process_chat(request):
+def constitution_process_chat(request):
     """
     Process chat messages using the LLM directly
     """
@@ -74,6 +76,7 @@ def process_chat(request):
     
     return JsonResponse({'error': 'Method not allowed'}, status=405)
 
+@login_required(login_url='/authentication/login/')
 def index(request):
     """
     Render the home page

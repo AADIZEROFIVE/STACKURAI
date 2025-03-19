@@ -1,121 +1,269 @@
-{% extends 'base.html' %}
-{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Menu</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Apply Inter font globally */
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+    }
 
-{% block title %}Home{% endblock %}
+    /* Page container with gradient background */
+    .page-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(to right, #60a5fa, #a78bfa);
+      padding: 1.5rem;
+    }
 
-{% block styles %}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-{% endblock %}
+    /* Header styling */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 28rem;
+      background-color: white;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
 
-{% block content %}
-<div id="webcrumbs"> 
-    <div class="w-[400px] bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200">
-<div class="bg-gradient-to-r from-indigo-500 to-blue-500 px-6 py-6 text-white">
-<h1 class="text-2xl font-bold">Community Assistant</h1>
-<p class="text-sm mt-1 opacity-80">Essential tools for everyday needs</p>
-</div>
+    .title {
+      font-size: 1.75rem; /* Increased for prominence */
+      font-weight: 800;
+      color: #1f2937;
+    }
 
-<div class="p-4">
-<div class="grid grid-cols-2 gap-4 mb-6">
-<div class="bg-blue-50 p-4 rounded-xl hover:bg-blue-100 transform hover:scale-105 transition-all duration-300 cursor-pointer border border-blue-200">
-    <span class="material-symbols-outlined text-3xl text-blue-500">public</span>
-    <p class="font-medium mt-2">News</p>
-    <p class="text-xs mt-1">Daily updates</p>
-</div>
-<div class="bg-green-50 p-4 rounded-xl hover:bg-green-100 transform hover:scale-105 transition-all duration-300 cursor-pointer border border-green-200">
-    <span class="material-symbols-outlined text-3xl text-green-500">school</span>
-    <p class="font-medium mt-2">Knowledge</p>
-    <p class="text-xs mt-1">Learn something new</p>
-</div>
-<div class="bg-amber-50 p-4 rounded-xl hover:bg-amber-100 transform hover:scale-105 transition-all duration-300 cursor-pointer border border-amber-200">
-    <span class="material-symbols-outlined text-3xl text-amber-500">account_balance</span>
-    <p class="font-medium mt-2">Banking</p>
-    <p class="text-xs mt-1">Financial services</p>
-</div>
-<div class="bg-purple-50 p-4 rounded-xl hover:bg-purple-100 transform hover:scale-105 transition-all duration-300 cursor-pointer border border-purple-200">
-    <span class="material-symbols-outlined text-3xl text-purple-500">gavel</span>
-    <p class="font-medium mt-2">Government</p>
-    <p class="text-xs mt-1">Public services</p>
-</div>
-</div>
+    .user-icon {
+      width: 36px;
+      height: 36px;
+      color: #4b5563;
+    }
 
-<details class="mb-3 open:mb-4 group transition-all duration-300">
-<summary class="cursor-pointer list-none flex items-center justify-between bg-gray-50 p-3 rounded-lg hover:bg-gray-100 transition-all">
-    <div class="flex items-center gap-2">
-    <span class="material-symbols-outlined text-gray-600">lightbulb</span>
-    <span class="font-medium">General Knowledge</span>
+    /* Menu container styling */
+    .menu-container {
+      background-color: white;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 28rem;
+    }
+
+    .menu-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #374151;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    /* Menu list styling */
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem; /* Increased for better spacing */
+    }
+
+    .menu-item {
+      padding: 0.75rem;
+      background-color: #2563eb;
+      color: white;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      transition: background-color 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: #1d4ed8;
+    }
+
+    /* Dropdown trigger styling */
+    .dropdown-trigger {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem;
+      background-color: #2563eb;
+      color: white;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      transition: background-color 0.3s;
+    }
+
+    .dropdown-trigger:hover {
+      background-color: #1d4ed8;
+    }
+
+    .dropdown-trigger .chevron {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s ease; /* Smooth rotation */
+    }
+
+    .dropdown.open .dropdown-trigger .chevron {
+      transform: rotate(180deg); /* Rotate when open */
+    }
+
+    /* Menu item content (for icons and text) */
+    .menu-item-content {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem; /* Space between icon and text */
+    }
+
+    .menu-item-content i {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Dropdown content styling with animation */
+    .dropdown .dropdown-content {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+    .dropdown.open .dropdown-content {
+      max-height: 500px; /* Large enough for content */
+      opacity: 1;
+    }
+
+    .dropdown-content {
+      background-color: white; /* Clean white background */
+      border-radius: 0.75rem;
+      margin-top: 0.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .dropdown-content li {
+      padding: 0.75rem 1rem;
+      color: #2563eb; /* Blue text for consistency */
+      cursor: pointer;
+      transition: background-color 0.3s;
+      border-bottom: 1px solid #d1d5db; /* Separator */
+    }
+
+    .dropdown-content li:last-child {
+      border-bottom: none; /* Remove separator on last item */
+    }
+
+    .dropdown-content li:hover {
+      background-color: #eff6ff; /* Light blue hover effect */
+    }
+
+    a {
+      color: inherit; /* Inherits color from parent element */
+      text-decoration: none; /* Removes underline */
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <!-- Header Section -->
+    <div class="header">
+      <h1 class="title">Project Title</h1>
+      <i data-lucide="user" class="user-icon"></i>
     </div>
-    <span class="material-symbols-outlined text-gray-500 group-open:rotate-180 transition-transform duration-300">expand_more</span>
-</summary>
-<div class="p-3 mt-2 bg-gray-50 rounded-lg text-sm">
-    <ul class="space-y-2">
-    <li class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-blue-500 text-sm">check_circle</span>
-        Read diverse sources to expand your knowledge
-    </li>
-    <li class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-blue-500 text-sm">check_circle</span>
-        Practice critical thinking with complex topics
-    </li>
-    <li class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-blue-500 text-sm">check_circle</span>
-        Engage in discussions to refine understanding
-    </li>
-    </ul>
-</div>
-</details>
 
-<details class="mb-3 open:mb-4 group transition-all duration-300">
-<summary class="cursor-pointer list-none flex items-center justify-between bg-gray-50 p-3 rounded-lg hover:bg-gray-100 transition-all">
-    <div class="flex items-center gap-2">
-    <span class="material-symbols-outlined text-gray-600">account_balance</span>
-    <span class="font-medium">Government & Banking</span>
+    <!-- Menu Section -->
+    <div class="menu-container">
+      <h2 class="menu-title">Menu</h2>
+      <ul class="menu">
+        <li class="menu-item">
+          <div class="menu-item-content">
+            <i data-lucide="newspaper"></i>
+            <span>News</span>
+          </div>
+        </li>
+        <li class="dropdown">
+          <div class="dropdown-trigger">
+            <div class="menu-item-content">
+              <i data-lucide="book-open"></i>
+              <span>General Knowledge</span>
+            </div>
+            <i data-lucide="chevron-down" class="chevron"></i>
+          </div>
+          <ul class="dropdown-content">
+            <li>Science</li>
+            <li>Maths</li>
+            <li>Profession</li>
+          </ul>
+        </li>
+        <li class="menu-item">
+          <div class="menu-item-content">
+            <i data-lucide="landmark"></i>
+            <a href="{% url 'const_chatbot' %}">Constitution</a>
+          </div>
+        </li>
+        <li class="dropdown">
+          <div class="dropdown-trigger">
+            <div class="menu-item-content">
+              <i data-lucide="dollar-sign"></i>
+              <span>Finance & Subsidy</span>
+            </div>
+            <i data-lucide="chevron-down" class="chevron"></i>
+          </div>
+          <ul class="dropdown-content">
+            <li>Banking</li>
+            <li>Subsidy</li>
+          </ul>
+        </li>
+      </ul>
     </div>
-    <span class="material-symbols-outlined text-gray-500 group-open:rotate-180 transition-transform duration-300">expand_more</span>
-</summary>
-<div class="p-3 mt-2 bg-gray-50 rounded-lg text-sm">
-    <div class="flex items-center gap-2 mb-2">
-    <span class="material-symbols-outlined text-green-500">payments</span>
-    <p>Banking hours: <span class="font-bold">9AM-5PM</span></p>
-    </div>
-    <div class="flex items-center gap-2">
-    <span class="material-symbols-outlined text-amber-500">badge</span>
-    <p>Govt. helpline: <span class="font-bold">1800-100-200</span></p>
-    </div>
-</div>
-</details>
+  </div>
 
-<div class="mt-6 bg-blue-50 rounded-xl p-4 border border-blue-200">
-<h2 class="font-bold mb-3 flex items-center gap-1">
-    <span class="material-symbols-outlined">campaign</span>
-    Important Announcement
-</h2>
-<p class="text-sm">New citizen services portal launching next week. Access government services online from home.</p>
-<button class="mt-3 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300 flex items-center justify-center gap-2 transform hover:scale-[1.02] active:scale-[0.98]">
-    <span class="material-symbols-outlined text-sm">info</span>
-    More Information
-</button>
-</div>
-</div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize Lucide icons
+      lucide.createIcons();
 
-<footer class="px-6 py-4 bg-gray-50 border-t border-gray-200">
-<div class="flex justify-between items-center">
-<button class="flex items-center gap-1 hover:bg-gray-100 p-2 rounded-lg transition-colors">
-    <span class="material-symbols-outlined">help</span>
-    <span class="text-sm">Help</span>
-</button>
-<button class="flex items-center gap-1 hover:bg-gray-100 p-2 rounded-lg transition-colors">
-    <span class="material-symbols-outlined">settings</span>
-    <span class="text-sm">Settings</span>
-</button>
-<button class="flex items-center gap-1 hover:bg-gray-100 p-2 rounded-lg transition-colors">
-    <span class="material-symbols-outlined">language</span>
-    <span class="text-sm">Language</span>
-</button>
-</div>
-</footer>
-</div> 
-</div>
-{% endblock %}
+      // Select all dropdown triggers
+      const dropdownTriggers = document.querySelectorAll('.dropdown .dropdown-trigger');
 
-    
+      // Toggle dropdowns on click
+      dropdownTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (event) => {
+          event.stopPropagation(); // Prevent document click from firing
+          const dropdown = trigger.parentElement;
+          const isOpen = dropdown.classList.contains('open');
+
+          // Close all dropdowns
+          document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+
+          // Open the clicked dropdown if it wasn’t open
+          if (!isOpen) {
+            dropdown.classList.add('open');
+          }
+        });
+      });
+
+      // Close dropdowns when clicking outside
+      document.addEventListener('click', () => {
+        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+      });
+
+      // Prevent dropdown closure when clicking inside content
+      document.querySelectorAll('.dropdown-content').forEach(content => {
+        content.addEventListener('click', (event) => {
+          event.stopPropagation();
+        });
+      });
+    });
+  </script>
+</body>
+</html>

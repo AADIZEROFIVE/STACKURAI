@@ -1,537 +1,181 @@
-/* General reset and base styles */
-*,
-*:after,
-*:before {
-  border: 0 solid #e5e7eb;
-  box-sizing: border-box;
+/* Base Styles */
+:root {
+  --primary-blue: #4F46E5;
+  --primary-hover: #4338CA;
+  --green-primary: #10B981;
+  --amber-primary: #F59E0B;
+  --purple-primary: #8B5CF6;
+  --border-radius: 14px;
+  --transition-speed: 0.3s;
 }
 
-*:after,
-*:before {
-  content: "";
+/* General Layout */
+#webcrumbs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-html {
-  line-height: 1.5;
-  -webkit-text-size-adjust: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  -moz-tab-size: 4;
-  tab-size: 4;
-  -webkit-tap-highlight-color: transparent;
+/* Hide all sections by default */
+.section-block {
+  display: none;
+  transition: all 0.3s ease-in-out;
 }
 
-body {
-  line-height: inherit;
-  margin: 0;
-}
-
-/* Reset styles for common elements */
-hr {
-  border-top: 1px solid;
-  color: inherit;
-  height: 0;
-}
-
-abbr[title] {
-  text-decoration: underline dotted;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-size: inherit;
-  font-weight: inherit;
-}
-
-a {
-  color: inherit;
-  text-decoration: inherit;
-}
-
-b, strong {
-  font-weight: bolder;
-}
-
-code, kbd, pre, samp {
-  font-family: monospace;
-  font-size: 1em;
-}
-
-small {
-  font-size: 80%;
-}
-
-sub, sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-
-sub {
-  bottom: -0.25em;
-}
-
-sup {
-  top: -0.5em;
-}
-
-table {
-  border-collapse: collapse;
-  border-color: inherit;
-  text-indent: 0;
-}
-
-button, input, optgroup, select, textarea {
-  color: inherit;
-  font-family: inherit;
-  font-size: 100%;
-  font-weight: inherit;
-  letter-spacing: inherit;
-  line-height: inherit;
-  margin: 0;
-  padding: 0;
-}
-
-button, select {
-  text-transform: none;
-}
-
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-  -webkit-appearance: button;
-  background-color: transparent;
-  background-image: none;
-}
-
-:-moz-focusring {
-  outline: auto;
-}
-
-:-moz-ui-invalid {
-  box-shadow: none;
-}
-
-progress {
-  vertical-align: baseline;
-}
-
-::-webkit-inner-spin-button,
-::-webkit-outer-spin-button {
-  height: auto;
-}
-
-[type="search"] {
-  -webkit-appearance: textfield;
-  outline-offset: -2px;
-}
-
-::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit;
-}
-
-summary {
-  display: list-item;
-}
-
-blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
-  margin: 0;
-}
-
-fieldset {
-  margin: 0;
-  padding: 0;
-}
-
-legend {
-  padding: 0;
-}
-
-menu, ol, ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-dialog {
-  padding: 0;
-}
-
-textarea {
-  resize: vertical;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: #9ca3af;
-  opacity: 1;
-}
-
-[role="button"],
-button {
-  cursor: pointer;
-}
-
-:disabled {
-  cursor: default;
-}
-
-audio, canvas, embed, iframe, img, object, svg, video {
+/* Show active section */
+.section-block.active {
   display: block;
-  vertical-align: middle;
+  animation: fadeIn 0.4s ease-out;
 }
 
-img, video {
-  height: auto;
-  max-width: 100%;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-[hidden] {
+/* Active navigation tile styling */
+.tile-active {
+  border-width: 2px !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Navigation Tiles */
+.nav-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: all var(--transition-speed) ease;
+}
+
+.nav-tile:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Section specific styling */
+
+/* News Section */
+#news-section .bg-blue-50 {
+  transition: all 0.3s ease;
+}
+
+#news-section li {
+  transition: transform 0.2s ease;
+}
+
+#news-section li:hover {
+  transform: translateX(3px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Education Section */
+#education-section .bg-green-50 {
+  transition: all 0.3s ease;
+}
+
+/* Make education subsections appear below the main section */
+#education-section .education-subsection {
+  margin-top: 12px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+#education-section .education-item.active .education-subsection {
+  max-height: 500px; /* Large enough to fit content */
+}
+
+#education-section li {
+  transition: all 0.2s ease;
+}
+
+#education-section li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+/* Locked content styling */
+.locked-content {
+  position: relative;
+  opacity: 0.7;
+}
+
+.lock-icon {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+}
+
+/* Laws Section */
+#laws-section li {
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#laws-section li:hover {
+  background-color: #FEF3C7 !important; /* Light amber */
+  transform: translateX(3px);
+}
+
+/* Finance Section */
+#finance-section .bg-white {
+  transition: all 0.2s ease;
+}
+
+#finance-section .bg-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Announcement Section */
+.bg-blue-50 button {
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+  transition: all 0.2s ease;
+}
+
+.bg-blue-50 button:hover {
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4);
+}
+
+/* Footer */
+footer button {
+  transition: all 0.2s ease;
+}
+
+footer button:hover span {
+  color: var(--primary-blue);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .w-\[400px\] {
+      width: 100%;
+      max-width: 400px;
+  }
+}
+
+/* Modified script for education subsections */
+/* This CSS will work with the updated JavaScript you'll need to implement */
+.education-subsection {
+  background-color: #E6FFF2;
+  border-radius: 8px;
+  padding: 8px;
+  margin-top: 8px;
   display: none;
 }
 
-/* Webcrumbs specific styles */
-#webcrumbs {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  font-size: 16px;
+.education-item.active .education-subsection {
+  display: block;
+  animation: slideDown 0.3s ease-out;
 }
 
-#webcrumbs .mb-2 {
-  margin-bottom: 8px;
-}
-
-#webcrumbs .mb-3 {
-  margin-bottom: 12px;
-}
-
-#webcrumbs .mb-6 {
-  margin-bottom: 24px;
-}
-
-#webcrumbs .mt-1 {
-  margin-top: 4px;
-}
-
-#webcrumbs .mt-2 {
-  margin-top: 8px;
-}
-
-#webcrumbs .mt-3 {
-  margin-top: 12px;
-}
-
-#webcrumbs .mt-6 {
-  margin-top: 24px;
-}
-
-#webcrumbs .flex {
-  display: flex;
-}
-
-#webcrumbs .grid {
-  display: grid;
-}
-
-#webcrumbs .w-400px {
-  width: 400px;
-}
-
-#webcrumbs .w-full {
-  width: 100%;
-}
-
-#webcrumbs .cursor-pointer {
-  cursor: pointer;
-}
-
-#webcrumbs .list-none {
-  list-style-type: none;
-}
-
-#webcrumbs .grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-#webcrumbs .flex-row {
-  flex-direction: row;
-}
-
-#webcrumbs .items-center {
-  align-items: center;
-}
-
-#webcrumbs .justify-center {
-  justify-content: center;
-}
-
-#webcrumbs .justify-between {
-  justify-content: space-between;
-}
-
-#webcrumbs .gap-1 {
-  gap: 4px;
-}
-
-#webcrumbs .gap-2 {
-  gap: 8px;
-}
-
-#webcrumbs .gap-4 {
-  gap: 16px;
-}
-
-#webcrumbs .space-y-2 > *:not([hidden]) ~ *:not([hidden]) {
-  margin-top: 8px;
-}
-
-#webcrumbs .overflow-hidden {
-  overflow: hidden;
-}
-
-#webcrumbs .rounded-2xl {
-  border-radius: 1.5rem; /* 24px, adjusted for better consistency */
-}
-
-#webcrumbs .rounded-lg {
-  border-radius: 0.5rem; /* 8px */
-}
-
-#webcrumbs .rounded-xl {
-  border-radius: 1rem; /* 16px */
-}
-
-#webcrumbs .border {
-  border-width: 1px;
-}
-
-#webcrumbs .border-t {
-  border-top-width: 1px;
-}
-
-#webcrumbs .border-amber-200 {
-  border-color: rgb(253, 230, 138);
-}
-
-#webcrumbs .border-blue-200 {
-  border-color: rgb(191, 219, 254);
-}
-
-#webcrumbs .border-gray-200 {
-  border-color: rgb(229, 231, 235);
-}
-
-#webcrumbs .border-green-200 {
-  border-color: rgb(187, 247, 208);
-}
-
-#webcrumbs .border-purple-200 {
-  border-color: rgb(233, 213, 255);
-}
-
-#webcrumbs .bg-amber-50 {
-  background-color: rgb(255, 251, 235);
-}
-
-#webcrumbs .bg-blue-50 {
-  background-color: rgb(239, 246, 255);
-}
-
-#webcrumbs .bg-blue-500 {
-  background-color: rgb(59, 130, 246);
-}
-
-#webcrumbs .bg-gray-50 {
-  background-color: rgb(249, 250, 251);
-}
-
-#webcrumbs .bg-green-50 {
-  background-color: rgb(240, 253, 244);
-}
-
-#webcrumbs .bg-purple-50 {
-  background-color: rgb(250, 245, 255);
-}
-
-#webcrumbs .bg-white {
-  background-color: rgb(255, 255, 255);
-}
-
-#webcrumbs .bg-gradient-to-r {
-  background-image: linear-gradient(to right, #6366f1, #3b82f6);
-}
-
-#webcrumbs .p-2 {
-  padding: 0.5rem; /* 8px */
-}
-
-#webcrumbs .p-3 {
-  padding: 0.75rem; /* 12px */
-}
-
-#webcrumbs .p-4 {
-  padding: 1rem; /* 16px */
-}
-
-#webcrumbs .px-6 {
-  padding-left: 1.5rem; /* 24px */
-  padding-right: 1.5rem; /* 24px */
-}
-
-#webcrumbs .py-2 {
-  padding-bottom: 0.5rem; /* 8px */
-  padding-top: 0.5rem; /* 8px */
-}
-
-#webcrumbs .py-4 {
-  padding-bottom: 1rem; /* 16px */
-  padding-top: 1rem; /* 16px */
-}
-
-#webcrumbs .py-6 {
-  padding-bottom: 1.5rem; /* 24px */
-  padding-top: 1.5rem; /* 24px */
-}
-
-#webcrumbs .text-2xl {
-  font-size: 1.5rem; /* 24px */
-  line-height: 2rem; /* 32px, adjusted for readability */
-}
-
-#webcrumbs .text-3xl {
-  font-size: 1.875rem; /* 30px */
-  line-height: 2.25rem; /* 36px */
-}
-
-#webcrumbs .text-sm {
-  font-size: 0.875rem; /* 14px */
-  line-height: 1.25rem; /* 20px */
-}
-
-#webcrumbs .text-xs {
-  font-size: 0.75rem; /* 12px */
-  line-height: 1.25rem; /* 20px */
-}
-
-#webcrumbs .font-bold {
-  font-weight: 700;
-}
-
-#webcrumbs .font-medium {
-  font-weight: 500;
-}
-
-#webcrumbs .text-amber-500 {
-  color: rgb(245, 158, 11);
-}
-
-#webcrumbs .text-blue-500 {
-  color: rgb(59, 130, 246);
-}
-
-#webcrumbs .text-gray-500 {
-  color: rgb(107, 114, 128);
-}
-
-#webcrumbs .text-gray-600 {
-  color: rgb(75, 85, 99);
-}
-
-#webcrumbs .text-green-500 {
-  color: rgb(34, 197, 94);
-}
-
-#webcrumbs .text-purple-500 {
-  color: rgb(168, 85, 247);
-}
-
-#webcrumbs .text-white {
-  color: rgb(255, 255, 255);
-}
-
-#webcrumbs .opacity-80 {
-  opacity: 0.8;
-}
-
-#webcrumbs .shadow-lg {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-              0 4px 6px -4px rgba(0, 0, 0, 0.1);
-}
-
-#webcrumbs .transition-all {
-  transition: all 0.3s ease-in-out; /* Smoother transition */
-}
-
-#webcrumbs .transition-colors {
-  transition: color 0.3s ease-in-out,
-              background-color 0.3s ease-in-out,
-              border-color 0.3s ease-in-out;
-}
-
-#webcrumbs .transition-transform {
-  transition: transform 0.3s ease-in-out;
-}
-
-#webcrumbs .duration-300 {
-  transition-duration: 0.3s;
-}
-
-#webcrumbs .open-mb-4[open] {
-  margin-bottom: 1rem; /* 16px */
-}
-
-#webcrumbs .hover-scale-105:hover {
-  transform: scale(1.05);
-}
-
-#webcrumbs .hover-scale-102:hover {
-  transform: scale(1.02);
-}
-
-#webcrumbs .hover-bg-amber-100:hover {
-  background-color: rgb(254, 243, 199);
-}
-
-#webcrumbs .hover-bg-blue-100:hover {
-  background-color: rgb(219, 234, 254);
-}
-
-#webcrumbs .hover-bg-blue-600:hover {
-  background-color: rgb(37, 99, 235);
-}
-
-#webcrumbs .hover-bg-gray-100:hover {
-  background-color: rgb(243, 244, 246);
-}
-
-#webcrumbs .hover-bg-green-100:hover {
-  background-color: rgb(220, 252, 231);
-}
-
-#webcrumbs .hover-bg-purple-100:hover {
-  background-color: rgb(243, 232, 255);
-}
-
-#webcrumbs .active-scale-098:active {
-  transform: scale(0.98);
-}
-
-#webcrumbs .group[open] .group-open-rotate-180 {
-  transform: rotate(180deg);
-}
-
-/* Improved handling of details and summary elements */
-#webcrumbs details summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-}
-
-#webcrumbs details summary::-webkit-details-marker {
-  display: none; /* Hides default arrow in WebKit browsers */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
