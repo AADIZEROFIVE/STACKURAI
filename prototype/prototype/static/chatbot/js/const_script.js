@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
         addLoadingIndicator();
         
         try {
-            // Send the message to the Django backend
+            // Updated endpoint to match Django URLs
             const response = await fetch('/api/chat/', {
                 method: 'POST',
                 headers: {

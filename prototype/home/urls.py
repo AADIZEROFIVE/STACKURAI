@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt # type: ignore
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('chat', views.chatbot_view, name='chatbot'),
-    path('api/chat/', views.process_chat, name='process_chat')
+    path('', csrf_exempt(views.index), name='index'),
+    path('constitution', views.constitution_chatbot_view, name='const_chatbot'),
+    path('api/chat/', views.constitution_process_chat, name='const_process_chat')
 ]
