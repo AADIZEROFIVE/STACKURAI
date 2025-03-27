@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Subsidies Buddy - Assistance Portal</title>
+    <link rel="stylesheet" href="{% static 'chatbot/css/const_style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Government Subsidies Buddy</h1>
+            <p>Your Comprehensive Guide to Government Benefits and Schemes</p>
+        </header>
+
+        <main>
+            <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message bot">
+                        <div class="avatar">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <div class="content">
+                            <p>Hello! I'm Government Subsidies Buddy, your digital assistant for navigating government welfare schemes and benefits.</p>
+                            <p>What information can I help you find today?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input">
+                    <form id="chat-form">
+                        <input type="text" id="user-input" placeholder="Ask about government subsidies..." autocomplete="off">
+                        <button type="submit" id="send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="suggestions">
+                <h3>Example Questions:</h3>
+                <div class="suggestion-chips">
+                    <button class="chip" data-question="What subsidies are available for farmers?">Farmer Subsidies</button>
+                    <button class="chip" data-question="Healthcare subsidies for low-income families">Healthcare Benefits</button>
+                    <button class="chip" data-question="Education scholarships and financial aid">Education Scholarships</button>
+                    <button class="chip" data-question="Housing schemes for middle-class families">Housing Schemes</button>
+                    <button class="chip" data-question="Subsidies for small business owners">Small Business Support</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>This assistant provides general information about government subsidies. For specific details, please consult official government sources.</p>
+        </footer>
+    </div>
+
+    <script src="{% static 'chatbot/js/govt_script.js' %}"></script>
+</body>
+</html>

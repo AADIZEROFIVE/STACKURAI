@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
         avatarDiv.className = 'avatar';
         
         const avatarIcon = document.createElement('i');
-        avatarIcon.className = isUser ? 'fas fa-user' : 'fas fa-balance-scale';
+        avatarIcon.className = isUser ? 'fas fa-user' : 'fas fa-hand-holding-usd';
         avatarDiv.appendChild(avatarIcon);
         
         const contentDiv = document.createElement('div');
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
         avatarDiv.className = 'avatar';
         
         const avatarIcon = document.createElement('i');
-        avatarIcon.className = 'fas fa-balance-scale';
+        avatarIcon.className = 'fas fa-hand-holding-usd';
         avatarDiv.appendChild(avatarIcon);
         
         const contentDiv = document.createElement('div');
@@ -132,8 +132,8 @@ document.addEventListener('DOMContentLoaded', function() {
         addLoadingIndicator();
         
         try {
-            // Updated endpoint to match Django URLs
-            const response = await fetch('/api/chat/const', {
+            // Updated endpoint to match Django URLs for government subsidies
+            const response = await fetch('/api/chat/govt', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

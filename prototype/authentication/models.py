@@ -4,7 +4,6 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     username = models.CharField(max_length=150, unique=True)
     age = models.PositiveIntegerField()
-    # Using PointField for GPS location - requires GeoDjango
     location = models.CharField(max_length=200, blank=True, null=True)
     profession = models.CharField(max_length=100)
     education_qualification = models.CharField(max_length=200)

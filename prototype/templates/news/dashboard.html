@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Menu</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        background: linear-gradient(to right, #60a5fa, #a78bfa);
+    }
+
+    .page-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        padding: 1.5rem;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 48rem;
+        background-color: white;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        border-radius: 1rem;
+        padding: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .title {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: #1f2937;
+    }
+
+    .news-container {
+        background-color: white;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        width: 100%;
+        max-width: 48rem;
+    }
+
+    .section-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #374151;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .article-item {
+        padding: 1rem;
+        border-bottom: 1px solid #e5e7eb;
+        transition: background-color 0.3s;
+    }
+
+    .article-item:hover {
+        background-color: #f3f4f6;
+    }
+
+    .article-title {
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+    }
+
+    .article-description {
+        color: #4b5563;
+        margin-bottom: 0.5rem;
+    }
+
+    .article-link {
+        color: #2563eb;
+        text-decoration: none;
+        font-size: 0.875rem;
+        transition: color 0.3s;
+    }
+
+    .article-link:hover {
+        color: #1d4ed8;
+        text-decoration: underline;
+    }
+
+    .user-icon {
+        width: 36px;
+        height: 36px;
+        color: #4b5563;
+    }
+
+    .error-alert {
+        background-color: #fee2e2;
+        border-color: #fecaca;
+        color: #7f1d1d;
+        padding: 1rem;
+        border-radius: 0.75rem;
+        margin-bottom: 1rem;
+    }
+</style>
+</head>
+<body>
+<div class="page-container">
+    <!-- Header Section -->
+    <div class="header">
+        <h1 class="title">News Dashboard</h1>
+        <i data-lucide="user" class="user-icon"></i>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="news-container">
+        {% if error %}
+        <div class="error-alert">
+            {{ error }}
+        </div>
+        {% else %}
+        <!-- News Summary Section -->
+        <div class="mb-6">
+            <h2 class="section-title">
+                News Summary for - {{ user_profession }} in {{ user.location }}
+            </h2>
+            <p class="text-gray-700 leading-relaxed px-4">
+                {{ news_summary }}
+            </p>
+        </div>
+
+        <!-- Articles Section -->
+        <div>
+            <h3 class="section-title">Related Articles</h3>
+            <div>
+                {% for article in articles %}
+                <div class="article-item {% if not forloop.last %}border-b{% endif %}">
+                    <h4 class="article-title">{{ article.title }}</h4>
+                    <p class="article-description">
+                        {{ article.description|default:'No description available' }}
+                    </p>
+                    {% if article.link %}
+                    <a href="{{ article.link }}" target="_blank" class="article-link">
+                        Read more
+                    </a>
+                    {% endif %}
+                    <div class="text-xs text-gray-500 mt-1">
+                        Source: {{ article.source_id }}
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-center text-gray-600 py-4">No articles available.</p>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        lucide.createIcons();
+    });
+</script>
+</body>
+</html>
