@@ -31,3 +31,8 @@ def login(request):
     else:
         form = LoginForm()
     return render(request, 'authentication/login.html', {'form': form})
+
+def logout(request):
+    auth.logout(request)
+    return redirect('authentication:login')
+    

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Menu</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+  }
+
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #60a5fa, #a78bfa);
+    padding: 1.5rem;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 48rem;
+    background-color: white;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #1f2937;
+  }
+
+  .roadmap-container {
+    background-color: white;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 48rem;
+  }
+
+  .roadmap-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e5e7eb;
+  }
+
+  .roadmap-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2563eb;
+  }
+
+  .goal-container {
+    background-color: #eff6ff;
+    border-left: 4px solid #2563eb;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .goal-title {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+  }
+
+  .goal-text {
+    color: #4b5563;
+    font-style: italic;
+  }
+
+  .profile-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: #f9fafb;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .profile-item {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .profile-label {
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 0.25rem;
+  }
+
+  .profile-value {
+    color: #1f2937;
+  }
+
+  .roadmap-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2563eb;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .section-content {
+    color: #4b5563;
+  }
+
+  .action-button {
+    padding: 0.75rem 1rem;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: background-color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+  }
+
+  .action-button:hover {
+    background-color: #1d4ed8;
+  }
+
+  .secondary-button {
+    padding: 0.75rem 1rem;
+    background-color: white;
+    color: #2563eb;
+    border: 1px solid #2563eb;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+  }
+
+  .secondary-button:hover {
+    background-color: #eff6ff;
+  }
+
+  .actions-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .roadmap-footer {
+    text-align: center;
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-top: 2rem;
+  }
+
+  /* For the roadmap content styling */
+  .roadmap-content h1, 
+  .roadmap-content h2, 
+  .roadmap-content h3 {
+    color: #2563eb;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .roadmap-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .roadmap-content h2 {
+    font-size: 1.25rem;
+  }
+
+  .roadmap-content h3 {
+    font-size: 1.125rem;
+  }
+
+  .roadmap-content p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .roadmap-content ul, 
+  .roadmap-content ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .roadmap-content li {
+    margin-bottom: 0.5rem;
+  }
+
+  .roadmap-content strong {
+    color: #1f2937;
+  }
+
+  @media print {
+    .page-container {
+      background: white;
+      padding: 0;
+    }
+    
+    .header, .actions-container {
+      display: none;
+    }
+    
+    .roadmap-container {
+      box-shadow: none;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page-container">
+  <!-- Header Section -->
+  <div class="header">
+    <h1 class="title">BODHIKAI</h1>
+    <div class="user-actions">
+      <a href="{% url 'financial_dashboard' %}" class="secondary-button">
+        <span>Back to Dashboard</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Roadmap Content -->
+  <div class="roadmap-container">
+    <div class="roadmap-header">
+      <h2 class="roadmap-title">Your Financial Roadmap</h2>
+      <div class="roadmap-date">Generated on {% now "F j, Y" %}</div>
+    </div>
+
+    <div class="goal-container">
+      <div class="goal-title">Your Financial Goal:</div>
+      <div class="goal-text">{{ goal }}</div>
+    </div>
+
+    <div class="profile-summary">
+      <div class="profile-item">
+        <div class="profile-label">Location</div>
+        <div class="profile-value">{{ user_profile.location }}</div>
+      </div>
+      <div class="profile-item">
+        <div class="profile-label">Profession</div>
+        <div class="profile-value">{{ user_profile.profession }}</div>
+      </div>
+      <div class="profile-item">
+        <div class="profile-label">Annual Income</div>
+        <div class="profile-value">${{ user_profile.income }}</div>
+      </div>
+    </div>
+
+    <div class="roadmap-content">
+      {{ roadmap|safe|linebreaks }}
+    </div>
+
+    <div class="actions-container">
+      <a href="{% url 'financial_dashboard' %}" class="secondary-button">
+        <span>Back to Dashboard</span>
+      </a>
+      <button onclick="window.print()" class="action-button">
+        <span>Print Roadmap</span>
+      </button>
+    </div>
+
+    <div class="roadmap-footer">
+      <p>This roadmap is for informational purposes only and does not constitute financial advice. Please consult with a qualified financial advisor before making any financial decisions.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

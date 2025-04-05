@@ -7,4 +7,5 @@ app_name = 'authentication'
 urlpatterns = [
     path('signup/', csrf_exempt(views.signup), name='signup'),
     path('login/', csrf_exempt(views.login), name='login'),
+    path('logout/', csrf_exempt(views.logout), name='logout')
 ]

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import json
 from django.http import JsonResponse, HttpResponseServerError
 from django.conf import settings
@@ -7,11 +7,13 @@ import logging
 import traceback
 import requests
 from dotenv import load_dotenv
+from django.contrib import messages
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from typing import List, Optional
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
+from .forms import FinancialGoalForm
 
 # Load environment variables
 load_dotenv("../.env")
@@ -166,3 +168,93 @@ def news_dashboard(request):
         return render(request, 'news/dashboard.html', {
             'error': 'An unexpected error occurred.'
         })
+
+@login_required
+def financial_dashboard(request):
+    """
+    Display user's financial dashboard with option to request a financial roadmap
+    """
+    # Get or create user profile
+    user_profile = request.user
+    
+    # Check if we have necessary profile information
+    profile_complete = all([
+        user_profile.location,
+        user_profile.income,
+        user_profile.profession
+    ])
+    
+    context = {
+        'user_profile': user_profile,
+        'profile_complete': profile_complete,
+        'form': FinancialGoalForm()
+    }
+    
+    return render(request, 'finance/financial_dashboard.html', context)
+
+@login_required
+@require_http_methods(["POST"])
+def generate_financial_roadmap(request):
+    """
+    Generate a personalized financial roadmap based on the user's goal
+    and existing profile information
+    """
+    form = FinancialGoalForm(request.POST)
+    
+    if not form.is_valid():
+        messages.error(request, "Please provide a valid financial goal.")
+        return redirect('financial_dashboard')
+    
+    # Get user profile information
+    user_profile = request.user
+    
+    # Check if we have all the required profile information
+    if not all([user_profile.location, user_profile.income, user_profile.profession]):
+        messages.error(request, "Please complete your profile before generating a roadmap.")
+        return redirect('index')
+    
+    # Extract form data
+    financial_goal = form.cleaned_data['goal']
+    
+    # Prepare prompt for Gemini
+    prompt = f"""
+    Create a professional, personalized financial roadmap for a user with the following details:
+    
+    - Location: {user_profile.location}
+    - Current Monthly Income: Rs{user_profile.income}
+    - Profession: {user_profile.profession}
+    - Education: {user_profile.education_qualification}
+    - Financial Goal: {financial_goal}
+    
+    The roadmap should include:
+    1. A clear assessment of the user's current financial situation based on their location, income, and profession
+    2. A step-by-step plan to achieve their stated financial goal
+    3. Specific actionable steps with timeframes
+    4. Potential challenges to anticipate and how to overcome them
+    5. Relevant investment vehicles or financial products that might help them reach their goal
+    6. Tax considerations based on their location
+    7. Recommendations for financial literacy resources specific to their situation
+    8. Return the answer in HTML format
+    Format the response as a professional financial advisory document with clear sections and bullet points where appropriate.
+    """
+    
+    try:
+        # Generate roadmap using Gemini
+        response = llm.invoke(prompt)
+        roadmap_content = response.content
+        
+        # Save the generated roadmap to the user's profile or a separate model if needed
+        user_profile.last_roadmap = roadmap_content
+        user_profile.save()
+        
+        context = {
+            'user_profile': user_profile,
+            'roadmap': roadmap_content,
+            'goal': financial_goal
+        }
+        
+        return render(request, 'finance/financial_roadmap.html', context)
+        
+    except Exception as e:
+        messages.error(request, f"Error generating roadmap: {str(e)}")
+        return redirect('financial_dashboard')

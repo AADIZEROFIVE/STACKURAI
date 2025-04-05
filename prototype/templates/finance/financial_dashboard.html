@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Menu</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+  }
+
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #60a5fa, #a78bfa);
+    padding: 1.5rem;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 40rem;
+    background-color: white;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #1f2937;
+  }
+
+  .dashboard-container {
+    background-color: white;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 40rem;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2563eb;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .profile-section {
+    margin-bottom: 2rem;
+  }
+
+  .profile-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .profile-item {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .profile-label {
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+  }
+
+  .profile-value {
+    color: #1f2937;
+    font-size: 1rem;
+  }
+
+  .action-button {
+    padding: 0.75rem 1rem;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: background-color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+  }
+
+  .action-button:hover {
+    background-color: #1d4ed8;
+  }
+
+  .secondary-button {
+    padding: 0.5rem 0.75rem;
+    background-color: white;
+    color: #2563eb;
+    border: 1px solid #2563eb;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+
+  .secondary-button:hover {
+    background-color: #eff6ff;
+  }
+
+  .alert {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .alert-warning {
+    background-color: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    color: #92400e;
+  }
+
+  .alert-error {
+    background-color: #fee2e2;
+    border-left: 4px solid #ef4444;
+    color: #b91c1c;
+  }
+
+  .alert-success {
+    background-color: #d1fae5;
+    border-left: 4px solid #10b981;
+    color: #065f46;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    background-color: #f9fafb;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .form-control:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  .form-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+  }
+
+  .previous-roadmaps {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+  }
+</style>
+</head>
+<body>
+<div class="page-container">
+  <!-- Header Section -->
+  <div class="header">
+    <h1 class="title">BODHIKAI</h1>
+    <div class="user-actions">
+      <a href="{% url 'index' %}" class="secondary-button">
+        <span>Back to Menu</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Dashboard Content -->
+  <div class="dashboard-container">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+    
+    <div class="profile-section">
+      <h2 class="section-title">Your Financial Profile</h2>
+      
+      {% if profile_complete %}
+        <div class="profile-row">
+          <div class="profile-item">
+            <div class="profile-label">Location</div>
+            <div class="profile-value">{{ user_profile.location }}</div>
+          </div>
+          <div class="profile-item">
+            <div class="profile-label">Profession</div>
+            <div class="profile-value">{{ user_profile.profession }}</div>
+          </div>
+          <div class="profile-item">
+            <div class="profile-label">Monthly Income</div>
+            <div class="profile-value">Rs.{{ user_profile.income }}</div>
+          </div>
+        </div>
+        <a>Update Profile</a>
+      {% else %}
+        <div class="alert alert-warning">
+          <p>Please complete your profile to receive personalized financial recommendations.</p>
+          <div style="margin-top: 0.75rem;">
+            <a>Complete Profile</a>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+    
+    {% if profile_complete %}
+      <div class="roadmap-section">
+        <h2 class="section-title">Generate Your Financial Roadmap</h2>
+        <p style="color: #4b5563; margin-bottom: 1rem;">Tell us your financial goal, and we'll create a personalized roadmap designed just for you.</p>
+        
+        <form method="post" action="{% url 'generate_financial_roadmap' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label class="form-label" for="{{ form.goal.id_for_label }}">
+              What is your financial goal?
+            </label>
+            {{ form.goal }}
+            <div class="form-text">{{ form.goal.help_text }}</div>
+          </div>
+          <button type="submit" class="action-button">Generate My Roadmap</button>
+        </form>
+      </div>
+      
+      {% if user_profile.last_roadmap %}
+        <div class="previous-roadmaps">
+          <h2 class="section-title">Previous Roadmaps</h2>
+          <p style="color: #4b5563; margin-bottom: 1rem;">You have previously generated financial roadmaps.</p>
+          <a href="{% url 'view_saved_roadmaps' %}" class="action-button">View Previous Roadmaps</a>
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+</body>
+</html>
