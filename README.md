@@ -46,7 +46,9 @@ Want to help bridge the education gap? Here's how you can contribute:
 
 > **"Education is the most powerful weapon which you can use to change the world." – Nelson Mandela**  
 
-
-
-
+Idea and Project Submitted By:
+Aadish Rakesh Shah
+Utkarsh Mandal
+Akshat Agrawal
+Tejas
 
