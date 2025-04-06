@@ -52,3 +52,6 @@ Utkarsh Mandal
 Akshat Agrawal
 Tejas
 
+Details:
+MVP LINK: http://34.58.25.118/authentication/login/?next=/
+VIDEO LINK: https://youtu.be/JmjorDFTnRw?si=mno6l35S-Cr5frQj
